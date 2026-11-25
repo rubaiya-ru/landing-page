@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StrategyByte · Every call answered. Every appointment booked.</title>
+  <meta name="description" content="StrategyByte develops growth strategies for Australian businesses, and ByteVoice, the AI receptionist that answers every call, 24/7, and books appointments directly into your calendar.">
+  <meta name="theme-color" content="#0A1129">
+  <meta property="og:title" content="StrategyByte · Every call answered. Every appointment booked.">
+  <meta property="og:description" content="ByteVoice is the AI receptionist from StrategyByte. It answers every call, 24/7, and books appointments directly into your calendar.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/kilo-3d.webp">
+  <link rel="icon" href="assets/kilo-head.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/kilo-head.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Inter+Tight:wght@400;500;600&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+      }
+    }
+  </script>
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js" crossorigin>
+  <script src="script.js" defer></script>
+  <script type="module" src="assets/js/kilo3d.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ───────────── Header ───────────── -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="StrategyByte home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="9" fill="#F2CB1D"/>
+          <rect x="8" y="17" width="4" height="7" rx="1.5" fill="#0A1129"/>
+          <rect x="14" y="12" width="4" height="12" rx="1.5" fill="#0A1129"/>
+          <rect x="20" y="8" width="4" height="16" rx="1.5" fill="#0A1129"/>
+        </svg>
+        <span class="brand-word">Strategy<span>Byte</span></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span class="sr-only">Open menu</span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-menu" aria-label="Main">
+        <ul>
+          <li><a class="nav-link" href="#services">What we do</a></li>
+          <li><a class="nav-link" href="#how">How it works</a></li>
+          <li><a class="nav-link" href="#industries">Industries</a></li>
+          <li><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="nav-link nav-signin" type="button" data-open-dialog="signin-dialog">
+            <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="7" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.8 16.5c1.2-3 3.5-4.4 6.2-4.4s5 1.4 6.2 4.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Sign in
+          </button>
+          <button class="btn btn-sm" type="button" data-open-dialog="demo-dialog">Book a demo</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ───────────── Hero ───────────── -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title" class="display">Every call answered. Every appointment <span class="accent">booked.</span></h1>
+          <p class="lead">StrategyByte develops growth strategies for Australian businesses. Our AI receptionist, ByteVoice, answers every call, 24 hours a day, and books appointments directly into your calendar.</p>
+
+          <ul class="chips" aria-label="ByteVoice at a glance">
+            <li>Available 24/7</li>
+            <li>Direct calendar booking</li>
+            <li>Natural Australian voice</li>
+          </ul>
+
+          <!-- Sign-up form: front-end only, nothing is stored or sent -->
+          <div class="signup" id="signup">
+            <form id="signup-form" class="signup-form" novalidate>
+              <h2 class="signup-title">Sign up for ByteVoice</h2>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="name">Full name</label>
+                  <input id="name" name="name" type="text" autocomplete="name" placeholder="Sam Taylor" required minlength="2" data-required="Please enter your name." aria-describedby="name-error">
+                  <p class="field-error" id="name-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="email">Work email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="sam@business.com.au" required data-required="Please enter your email address." aria-describedby="email-error">
+                  <p class="field-error" id="email-error" aria-live="polite"></p>
+                </div>
+                <div class="field">
+                  <label for="industry">Industry</label>
+                  <div class="select-wrap">
+                    <select id="industry" name="industry" required data-required="Please select your industry." aria-describedby="industry-error">
+                      <option value="">Please select</option>
+                      <option>Healthcare</option>
+                      <option>Professional services</option>
+                      <option>Trades</option>
+                      <option>Retail and hospitality</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <p class="field-error" id="industry-error" aria-live="polite"></p>
+                </div>
+                <div class="field field--submit">
+                  <button class="btn btn-block" type="submit">
+                    <span class="btn-label">Sign up</span>
+                    <span class="btn-dot" aria-hidden="true">
+                      <svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <p class="form-note">No obligation. <span>Demo page: nothing you enter is stored or sent.</span></p>
+              <p class="sr-only" role="status" data-form-status></p>
+            </form>
+
+            <div class="form-success" id="signup-success" hidden>
+              <img src="assets/kilo-head.png" alt="" width="56" height="56">
+              <div>
+                <h2 class="signup-title" tabindex="-1" data-success-title>Thank you for signing up, <span data-success-name></span>.</h2>
+                <p>We will be in touch at <strong data-success-email></strong> shortly.</p>
+                <p class="form-note">Demo page: nothing was actually sent.</p>
+                <button type="button" class="link link-u" data-success-reset>Sign up another person</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-stage">
+          <div class="stage-glow" aria-hidden="true"></div>
+          <div class="kilo-wrap" data-kilo-3d>
+            <img class="kilo-poster" src="assets/kilo-3d.webp" width="760" height="887" alt="Kilo the quokka, the ByteVoice mascot, waving in a headset and navy jumper" fetchpriority="high">
+          </div>
+          <p class="subtitle"><span class="subtitle-name">Kilo · ByteVoice</span>“Hello, I am Kilo. I answer every call so you can focus on your business.”</p>
+          <div class="ticker" aria-hidden="true">
+            <span class="ticker-count" data-ticker-count>01 / 11</span>
+            <div class="ticker-body">
+              <span class="ticker-name" data-ticker-name>Dental practices</span>
+              <span class="ticker-line" data-ticker-line>Books check-ups and cleans, and fills cancellations.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── Stats ───────────── -->
+    <section class="stats" aria-label="ByteVoice in numbers">
+      <div class="container stats-grid">
+        <div class="stat"><span class="stat-num">24<span>/7</span></span><span class="stat-label">Available every day of the year</span></div>
+        <div class="stat"><span class="stat-num">11</span><span class="stat-label">Industries supported</span></div>
+        <div class="stat"><span class="stat-num">AU</span><span class="stat-label">Australian voice and support</span></div>
+        <div class="stat"><span class="stat-num">0</span><span class="stat-label">Missed calls</span></div>
+      </div>
+    </section>
+
+    <!-- ───────────── Services ───────────── -->
+    <section class="section section--light" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">What we do</p>
+          <h2 class="h2" id="services-title">Two ways we help your business grow.</h2>
+          <p class="section-lead">StrategyByte is our strategy studio. ByteVoice is the product we built for businesses that cannot afford to miss a call.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <p class="card-label">StrategyByte · Studio</p>
+            <h3 class="h3">Strategy that delivers results.</h3>
+            <p>We help Australian businesses identify their growth opportunities and build what is needed to achieve them.</p>
+            <ul class="service-list">
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" class="fill"/></svg>
+                <div><strong>Brand and positioning</strong><span>A clear message for the customers you want to reach.</span></div>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l5-5 4 3 7-8"/><path d="M15 8h5v5"/></svg>
+                <div><strong>Digital marketing</strong><span>Search, social and paid campaigns with measurable returns.</span></div>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M3.5 9h17"/></svg>
+                <div><strong>Websites that convert</strong><span>Fast, accessible websites designed to generate enquiries.</span></div>
+              </li>
+            </ul>
+          </article>
+
+          <article class="service-card service-card--featured">
+            <p class="card-label card-label--gold">ByteVoice · Product</p>
+            <h3 class="h3">A receptionist who is always available.</h3>
+            <p>ByteVoice answers your calls in a natural Australian voice, asks the right questions for your industry and books appointments on your behalf.</p>
+            <ul class="check-list">
+              <li>Answers every call, day and night</li>
+              <li>Books directly into your calendar</li>
+              <li>Sends you a summary after each call</li>
+            </ul>
+            <a class="link link-u" href="#how">See how it works</a>
+            <img class="featured-kilo" src="assets/kilo-3d.webp" alt="" width="130" height="152" loading="lazy">
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── How it works ───────────── -->
+    <section class="section section--dark" id="how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow eyebrow--dark">How it works</p>
+          <h2 class="h2" id="how-title">Up and running in minutes.</h2>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-no">01</span>
+            <h3 class="h3">Forward your number</h3>
+            <p>Keep your existing number. Divert missed or after-hours calls to ByteVoice in a few simple steps.</p>
+          </li>
+          <li class="step">
+            <span class="step-no">02</span>
+            <h3 class="h3">Every call is answered</h3>
+            <p>A natural Australian voice greets each caller, asks the questions relevant to your business and never places anyone on hold.</p>
+          </li>
+          <li class="step">
+            <span class="step-no">03</span>
+            <h3 class="h3">Appointments are booked</h3>
+            <p>Bookings go directly into your calendar, with a brief summary so you know who called and why.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ───────────── Industries ───────────── -->
+    <section class="section section--light" id="industries" aria-labelledby="industries-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Industries</p>
+          <h2 class="h2" id="industries-title">Built for your industry.</h2>
+          <p class="section-lead">ByteVoice understands the questions your callers ask, from dental check-ups to urgent plumbing repairs.</p>
+        </div>
+        <ul class="industry-grid">
+          <li class="industry" data-no="01"><span class="industry-meta"><span>01</span><span class="tag">Healthcare</span></span><h3>Dental practices</h3><p>Books check-ups and cleans, and fills cancellations.</p></li>
+          <li class="industry" data-no="02"><span class="industry-meta"><span>02</span><span class="tag">Healthcare</span></span><h3>GP clinics</h3><p>Manages appointments and repeat prescription requests.</p></li>
+          <li class="industry" data-no="03"><span class="industry-meta"><span>03</span><span class="tag">Healthcare</span></span><h3>NDIS providers</h3><p>Takes participant enquiries and logs support requests.</p></li>
+          <li class="industry" data-no="04"><span class="industry-meta"><span>04</span><span class="tag">Healthcare</span></span><h3>Allied health</h3><p>Books physiotherapy, chiropractic and psychology sessions, and sends intake forms.</p></li>
+          <li class="industry" data-no="05"><span class="industry-meta"><span>05</span><span class="tag">Professional</span></span><h3>Accountants</h3><p>Books consultations and manages call volume during tax season.</p></li>
+          <li class="industry" data-no="06"><span class="industry-meta"><span>06</span><span class="tag">Professional</span></span><h3>Lawyers</h3><p>Qualifies new matters and books consultations.</p></li>
+          <li class="industry" data-no="07"><span class="industry-meta"><span>07</span><span class="tag">Trades</span></span><h3>Electricians</h3><p>Captures new jobs while you are on site.</p></li>
+          <li class="industry" data-no="08"><span class="industry-meta"><span>08</span><span class="tag">Trades</span></span><h3>Carpenters</h3><p>Records quote requests and schedules site visits.</p></li>
+          <li class="industry" data-no="09"><span class="industry-meta"><span>09</span><span class="tag">Trades</span></span><h3>Plumbers</h3><p>Handles after-hours emergency calls and schedules visits.</p></li>
+          <li class="industry" data-no="10"><span class="industry-meta"><span>10</span><span class="tag">Retail</span></span><h3>Retail stores</h3><p>Answers questions about stock and opening hours, and takes orders.</p></li>
+          <li class="industry" data-no="11"><span class="industry-meta"><span>11</span><span class="tag">Hospitality</span></span><h3>Restaurants</h3><p>Takes reservations and manages calls during busy service periods.</p></li>
+          <li class="industry industry--cta">
+            <h3>Is your industry not listed?</h3>
+            <p>ByteVoice can be configured for most businesses. Book a demo and we will show you how.</p>
+            <button class="btn btn-sm" type="button" data-open-dialog="demo-dialog">Book a demo</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ───────────── FAQ ───────────── -->
+    <section class="section section--light section--faq" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid">
+        <div class="section-head section-head--left">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="h2" id="faq-title">Frequently asked questions.</h2>
+          <p class="section-lead">If your question is not answered here, please book a demo and our team will be glad to help.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Is this a live sign-up page?</summary>
+            <p>Not yet. This is a demonstration page, so the forms only check your details in your browser. Nothing is stored or sent.</p>
+          </details>
+          <details>
+            <summary>What does StrategyByte do?</summary>
+            <p>StrategyByte is a digital strategy studio that helps Australian businesses grow through brand positioning, digital marketing and high-performing websites. ByteVoice is our own product.</p>
+          </details>
+          <details>
+            <summary>Does ByteVoice sound natural?</summary>
+            <p>Yes. ByteVoice speaks in a natural Australian voice, follows the scripts you approve and can transfer a caller to a member of your team at any time.</p>
+          </details>
+          <details>
+            <summary>Can ByteVoice book directly into my calendar?</summary>
+            <p>Yes. Appointments are added directly to your calendar, and you receive a brief summary after every call.</p>
+          </details>
+          <details>
+            <summary>What happens after I sign up?</summary>
+            <p>On this demonstration page you will see a confirmation message. In the full service, a member of our team would contact you to arrange a walkthrough.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── Final CTA ───────────── -->
+    <section class="cta-band" aria-labelledby="cta-title">
+      <div class="container cta-inner">
+        <h2 class="h2" id="cta-title">Never miss another <span class="accent">opportunity.</span></h2>
+        <p class="cta-lead">See how ByteVoice can answer your calls and fill your calendar.</p>
+        <div class="cta-actions">
+          <button class="btn" type="button" data-open-dialog="demo-dialog">
+            <span class="btn-label">Book a demo</span>
+            <span class="btn-dot" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <a class="link link-u" href="#signup" data-focus-signup>Or sign up now</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ───────────── Footer ───────────── -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand" href="#top" aria-label="StrategyByte home">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="9" fill="#F2CB1D"/>
+            <rect x="8" y="17" width="4" height="7" rx="1.5" fill="#0A1129"/>
+            <rect x="14" y="12" width="4" height="12" rx="1.5" fill="#0A1129"/>
+            <rect x="20" y="8" width="4" height="16" rx="1.5" fill="#0A1129"/>
+          </svg>
+          <span class="brand-word">Strategy<span>Byte</span></span>
+        </a>
+        <p class="footer-tag">Growth strategy and ByteVoice, made in Australia.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="footer-links">
+          <li><a href="#services">What we do</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#industries">Industries</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><button type="button" data-open-dialog="signin-dialog">Sign in</button></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-base">
+      <p>© 2026 StrategyByte. Demonstration page for preview only.</p>
+    </div>
+  </footer>
+
+  <!-- ───────────── Book a demo dialog ───────────── -->
+  <dialog class="modal" id="demo-dialog" aria-labelledby="demo-title">
+    <div class="modal-card">
+      <button class="modal-close" type="button" data-close-dialog aria-label="Close">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+
+      <form id="demo-form" novalidate>
+        <p class="eyebrow eyebrow--dark">ByteVoice</p>
+        <h2 class="modal-title" id="demo-title">Book a demo</h2>
+        <p class="modal-lead">Choose a time that suits you and our team will walk you through ByteVoice.</p>
+        <div class="form-grid">
+          <div class="field">
+            <label for="demo-name">Full name</label>
+            <input id="demo-name" name="name" type="text" autocomplete="name" required minlength="2" data-required="Please enter your name." aria-describedby="demo-name-error">
+            <p class="field-error" id="demo-name-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="demo-email">Work email</label>
+            <input id="demo-email" name="email" type="email" autocomplete="email" inputmode="email" required data-required="Please enter your email address." aria-describedby="demo-email-error">
+            <p class="field-error" id="demo-email-error" aria-live="polite"></p>
+          </div>
+          <div class="field field--full">
+            <label for="demo-business">Business name <span class="optional">(optional)</span></label>
+            <input id="demo-business" name="business" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="demo-date">Preferred date</label>
+            <input id="demo-date" name="date" type="date" required data-required="Please choose a date." aria-describedby="demo-date-error">
+            <p class="field-error" id="demo-date-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="demo-time">Preferred time</label>
+            <div class="select-wrap">
+              <select id="demo-time" name="time" required data-required="Please choose a time." aria-describedby="demo-time-error">
+                <option value="">Please select</option>
+                <option>Morning (9 am to 12 pm)</option>
+                <option>Afternoon (12 pm to 5 pm)</option>
+              </select>
+            </div>
+            <p class="field-error" id="demo-time-error" aria-live="polite"></p>
+          </div>
+        </div>
+        <button class="btn btn-block" type="submit">
+          <span class="btn-label">Request demo</span>
+          <span class="btn-dot" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <p class="form-note">Demo page: nothing you enter is stored or sent.</p>
+        <p class="sr-only" role="status" data-form-status></p>
+      </form>
+
+      <div class="form-success" id="demo-success" hidden>
+        <img src="assets/kilo-head.png" alt="" width="56" height="56">
+        <div>
+          <h2 class="modal-title" tabindex="-1" data-success-title>Thank you, <span data-success-name></span>.</h2>
+          <p>Your demo request for <strong data-success-when></strong> has been received. We will confirm by email at <strong data-success-email></strong>.</p>
+          <p class="form-note">Demo page: nothing was actually sent.</p>
+          <button class="btn btn-sm" type="button" data-close-dialog>Close</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ───────────── Sign in dialog ───────────── -->
+  <dialog class="modal modal--narrow" id="signin-dialog" aria-labelledby="signin-title">
+    <div class="modal-card">
+      <button class="modal-close" type="button" data-close-dialog aria-label="Close">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+
+      <form id="signin-form" novalidate>
+        <h2 class="modal-title" id="signin-title">Sign in</h2>
+        <p class="modal-lead">Welcome back. Please sign in to your ByteVoice account.</p>
+        <div class="form-stack">
+          <div class="field">
+            <label for="signin-email">Email</label>
+            <input id="signin-email" name="email" type="email" autocomplete="username" inputmode="email" required data-required="Please enter your email address." aria-describedby="signin-email-error">
+            <p class="field-error" id="signin-email-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <div class="label-row">
+              <label for="signin-password">Password</label>
+              <button type="button" class="text-btn" data-forgot>Forgot password?</button>
+            </div>
+            <input id="signin-password" name="password" type="password" autocomplete="current-password" required data-required="Please enter your password." aria-describedby="signin-password-error">
+            <p class="field-error" id="signin-password-error" aria-live="polite"></p>
+          </div>
+        </div>
+        <button class="btn btn-block" type="submit">
+          <span class="btn-label">Sign in</span>
+          <span class="btn-dot" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <p class="form-message" data-signin-message role="status"></p>
+        <p class="modal-foot">New to ByteVoice? <a href="#signup" class="link-inline" data-focus-signup>Create an account</a></p>
+      </form>
+    </div>
+  </dialog>
+</body>
+</html>
